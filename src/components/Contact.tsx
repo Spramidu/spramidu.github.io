@@ -1,11 +1,14 @@
+
 'use client'
 
 import { useState, type FormEvent } from 'react'
-import { contactFormEndpoint, profile } from '@/data/content'
+import { profile } from '@/data/content'
 import { assetUrl } from '@/lib/assetUrl'
 import { Reveal } from './Reveal'
 
 type Status = 'idle' | 'sending' | 'ok' | 'error'
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbgokbpd'
 
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
@@ -16,10 +19,18 @@ export function Contact() {
     setStatus('sending')
 
     try {
-      await fetch(contactFormEndpoint, {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         body: new FormData(form),
+        headers: {
+          Accept: 'application/json',
+        },
       })
+
+      if (!response.ok) {
+        throw new Error('Message submission failed')
+      }
+
       setStatus('ok')
       form.reset()
       window.setTimeout(() => setStatus('idle'), 5000)
@@ -67,19 +78,36 @@ export function Contact() {
           </a>
         </Reveal>
 
-        <form className="contact__form" name="submit-to-google-sheet" onSubmit={onSubmit}>
+        <form className="contact__form" onSubmit={onSubmit}>
           <label>
             <span>Name</span>
-            <input type="text" name="Name" required autoComplete="name" />
+            <input
+              type="text"
+              name="name"
+              required
+              autoComplete="name"
+            />
           </label>
+
           <label>
             <span>Email</span>
-            <input type="email" name="Email" required autoComplete="email" />
+            <input
+              type="email"
+              name="email"
+              required
+              autoComplete="email"
+            />
           </label>
+
           <label>
             <span>Message</span>
-            <textarea name="Message" rows={6} required />
+            <textarea
+              name="message"
+              rows={6}
+              required
+            />
           </label>
+
           <button
             type="submit"
             className="btn btn--primary"
@@ -87,11 +115,13 @@ export function Contact() {
           >
             {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
+
           {status === 'ok' && (
             <p className="contact__status contact__status--ok" role="status">
-              Message sent successfully.
+              Message sent successfully!
             </p>
           )}
+
           {status === 'error' && (
             <p className="contact__status contact__status--error" role="alert">
               Something went wrong. Please try again or email me directly.
