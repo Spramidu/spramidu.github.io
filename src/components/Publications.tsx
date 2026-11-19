@@ -12,7 +12,7 @@ export function Publications() {
           <p className="eyebrow">Research</p>
           <h2>Publications</h2>
           <p className="section__lead">
-            Peer-reviewed and workshop papers on evaluating contextual understanding in LLMs.
+            Research publications and contributions in RF front-end design for GNSS and machine-learning-based spoofing detection.
           </p>
         </Reveal>
 

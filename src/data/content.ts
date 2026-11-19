@@ -1,5 +1,5 @@
 
-export const siteUrl = 'https://spramidu.github.io/Website_Resume'
+export const siteUrl = 'https://spramidu.github.io'
 
 // ==========================================
 // PERSONAL PROFILE
