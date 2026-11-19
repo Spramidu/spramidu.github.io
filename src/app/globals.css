@@ -1,0 +1,446 @@
+
+/* ==========================================
+   THEME VARIABLES
+========================================== */
+
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: #080b09;
+  --bg-soft: #111713;
+  --ink: #f5f7f5;
+  --muted: #a5b0a8;
+
+  --accent: #86ca18;
+  --accent-deep: #75b21b;
+  --accent-soft: rgba(163, 230, 53, 0.35);
+  --on-accent: #10160b;
+
+  --line: rgba(245, 247, 245, 0.15);
+  --surface: rgba(17, 23, 19, 0.75);
+  --surface-solid: #111713;
+  --surface-input: rgba(17, 23, 19, 0.9);
+  --nav-bg: rgba(8, 11, 9, 0.88);
+
+  --glow-a: rgba(163, 230, 53, 0.12);
+  --glow-b: rgba(132, 204, 22, 0.07);
+  --tint: rgba(17, 23, 19, 0.65);
+
+  --hero-ink: #ffffff;
+  --hero-muted: rgba(255, 255, 255, 0.85);
+  --hero-accent: #a3e635;
+  --hero-image-filter: brightness(1.04) contrast(1.04) saturate(1.05);
+
+  --hero-veil: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 76%,
+    rgba(8, 11, 9, 0.72) 94%,
+    #080b09 100%
+  );
+
+  --hero-glow:
+    radial-gradient(
+      ellipse 32% 48% at 74% 44%,
+      rgba(163, 230, 53, 0.15),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 38% 42% at 6% 76%,
+      rgba(132, 204, 22, 0.08),
+      transparent 70%
+    );
+
+  --grain-opacity: 0.035;
+
+  --nav-top-ink: rgba(255, 255, 255, 0.78);
+  --nav-top-ink-strong: #ffffff;
+  --nav-top-border: rgba(255, 255, 255, 0.25);
+  --nav-scrim: rgba(8, 11, 9, 0.5);
+
+  --shadow-pop: 0 28px 60px rgba(0, 0, 0, 0.65);
+}
+
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #f7faf5;
+  --bg-soft: #edf4e8;
+  --ink: #172016;
+  --muted: #647160;
+
+  --accent: #65a30d;
+  --accent-deep: #4d7c0f;
+  --accent-soft: rgba(101, 163, 13, 0.3);
+  --on-accent: #ffffff;
+
+  --line: rgba(23, 32, 22, 0.16);
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-solid: #ffffff;
+  --surface-input: rgba(255, 255, 255, 0.95);
+  --nav-bg: rgba(247, 250, 245, 0.9);
+
+  --glow-a: rgba(163, 230, 53, 0.2);
+  --glow-b: rgba(101, 163, 13, 0.09);
+  --tint: rgba(237, 244, 232, 0.7);
+
+  --hero-ink: #172016;
+  --hero-muted: #52604d;
+  --hero-accent: #4d7c0f;
+  --hero-image-filter: contrast(1.02) saturate(1.08);
+
+  --hero-veil: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 76%,
+    rgba(247, 250, 245, 0.72) 94%,
+    #f7faf5 100%
+  );
+
+  --hero-glow:
+    radial-gradient(
+      ellipse 32% 48% at 74% 44%,
+      rgba(163, 230, 53, 0.18),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 38% 42% at 6% 76%,
+      rgba(101, 163, 13, 0.1),
+      transparent 70%
+    );
+
+  --grain-opacity: 0.045;
+
+  --nav-top-ink: #647160;
+  --nav-top-ink-strong: #172016;
+  --nav-top-border: rgba(23, 32, 22, 0.18);
+  --nav-scrim: rgba(247, 250, 245, 0.94);
+
+  --shadow-pop: 0 28px 60px rgba(23, 32, 22, 0.15);
+}
+
+
+/* ==========================================
+   GLOBAL VARIABLES
+========================================== */
+
+:root {
+  --font-display: var(--font-display-family), 'Trebuchet MS', sans-serif;
+  --font-body: var(--font-body-family), 'Segoe UI', sans-serif;
+
+  --radius: 16px;
+  --border-w: 2px;
+  --gutter: clamp(1.15rem, 3.5vw, 3rem);
+  --container: min(1440px, calc(100% - (var(--gutter) * 2)));
+
+  color: var(--ink);
+  background: var(--bg);
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 10% -10%,
+      var(--glow-a),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 20%,
+      var(--glow-b),
+      transparent 50%
+    ),
+    var(--bg);
+
+  color: var(--ink);
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* ==========================================
+   BACKGROUND GRAIN
+========================================== */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+
+/* ==========================================
+   ELEMENTS
+========================================== */
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+
+/* ==========================================
+   MOBILE HERO
+========================================== */
+
+@media (max-width: 660px) {
+  [data-theme='dark'] {
+    --hero-veil: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 24%,
+      rgba(8, 11, 9, 0.55) 42%,
+      rgba(8, 11, 9, 0.88) 60%,
+      #080b09 100%
+    );
+  }
+
+  [data-theme='light'] {
+    --hero-veil: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 24%,
+      rgba(247, 250, 245, 0.6) 42%,
+      rgba(247, 250, 245, 0.9) 62%,
+      #f7faf5 100%
+    );
+  }
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+
+/* ==========================================
+   SCROLL PROGRESS
+========================================== */
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 50;
+  transform-origin: 0 50%;
+
+  background: linear-gradient(
+    90deg,
+    #a3e635,
+    #65a30d
+  );
+}
+
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+.section {
+  padding: clamp(4rem, 9vw, 6.5rem) 0;
+}
+
+.section--tint {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--tint),
+    transparent
+  );
+}
+
+
+/* ==========================================
+   HEADINGS
+========================================== */
+
+.eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.section__lead {
+  max-width: 38rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn--primary:hover {
+  background: var(--accent-deep);
+}
+
+.btn--primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn--ghost {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+
+/* ==========================================
+   SKILL BRAND LOGOS
+========================================== */
+
+.skill__brand-logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* ==========================================
+   REDUCED MOTION
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
