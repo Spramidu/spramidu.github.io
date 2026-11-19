@@ -50,7 +50,6 @@ export const profile = {
   ],
 } as const
 
-
 // ==========================================
 // HERO TICKER
 // ==========================================
@@ -67,7 +66,6 @@ export const heroTicker = [
   },
 ] as const
 
-
 // ==========================================
 // NAVIGATION
 // ==========================================
@@ -81,7 +79,6 @@ export const navLinks = [
   { label: 'Research', href: '#publications' },
   { label: 'Contact', href: '#contact' },
 ] as const
-
 
 // ==========================================
 // EXPERIENCE
@@ -112,7 +109,6 @@ export const experience: Experience[] = [
   },
 ]
 
-
 // ==========================================
 // EDUCATION LOGOS
 // ==========================================
@@ -131,7 +127,6 @@ export const educationLogos = [
     logo: 'logos/demazenod.png',
   },
 ]
-
 
 // ==========================================
 // TECHNICAL SKILLS
@@ -204,12 +199,9 @@ export const skillGroups: SkillGroup[] = [
     label: 'Testing & Measurement',
     skills: [
       'Oscilloscope',
-      'Logic Analyzer',
       'Vector Network Analyzer (VNA)',
-      'Differential Probing',
       'IR Thermal Imaging',
       'Climate Chamber Testing',
-      'Current Measurement',
       'Impedance Measurement',
       'Hardware Debugging',
       'Hardware Validation',
@@ -223,7 +215,6 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
 ]
-
 
 // ==========================================
 // ABOUT SECTION
@@ -337,7 +328,6 @@ export const aboutTabs: {
     ],
   },
 ]
-
 
 // ==========================================
 // PROJECTS
@@ -453,7 +443,6 @@ export const projects: Project[] = [
   },
 ]
 
-
 // ==========================================
 // PUBLICATIONS
 // ==========================================
@@ -485,7 +474,6 @@ export const publications = [
   },
 ]
 
-
 // ==========================================
 // LEADERSHIP & ACTIVITIES
 // ==========================================
@@ -496,7 +484,6 @@ export const leadership = [
   'Electronics Club',
   'Swimming',
 ]
-
 
 // ==========================================
 // CONTACT FORM
