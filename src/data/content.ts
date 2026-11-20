@@ -460,18 +460,6 @@ export const publications = [
     href:
       'https://ieeexplore.ieee.org/abstract/document/11585567',
   },
-  {
-    title:
-      'NEMESIS-Shield: Learning Resilient Signal Representations for GNSS Integrity via JEPA',
-    venue:
-      '2026 IEEE 104th Vehicular Technology Conference (VTC2026-Fall)',
-    date: '2026',
-    authors: 'Pramidu Saumyajith – Co-author',
-    description:
-      'An advanced JEPA-based framework for robust GNSS spoofing detection in autonomous vehicles and other safety-critical applications, using wavelet-domain signal representation learning and neural network classification.',
-    href:
-      'https://ieeexplore.ieee.org/abstract/document/11758470',
-  },
 ]
 
 // ==========================================
